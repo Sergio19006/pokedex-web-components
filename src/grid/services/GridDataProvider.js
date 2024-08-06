@@ -16,10 +16,17 @@ export default class GridDataProvider {
     }
 
     async getPokemonsByCriterial(criterial) {
-        const urls = criterial.map(filter => filter.url);
-        const pokemons_filters = await Promise.all(urls.map(url => fetch(url)))
-            .then(responses => Promise.all(responses.map(response => response.json())))
-            .then(data => data.map(pokemon => this._normalizer.normalizeFilteredPokemon(pokemon)));
-        return pokemons_filters.flat().map(pokemon => pokemon.name);
+        try {
+            const urls = criterial.map(filter => filter.url);
+            const responses = await Promise.all(urls.map(url => fetch(url)));
+            const data = await Promise.all(responses.map(response => {
+                return response.json();
+            }));
+            const normalizedPokemons = data.map(pokemon => this._normalizer.normalizeFilteredPokemon(pokemon));
+            return normalizedPokemons.flat().map(pokemon => pokemon.name);
+        } catch (error) {
+            console.error('There was an error fetching the pokemons by criteria!', error);
+            throw new Error('There was an error fetching the pokemons by criteria');
+        }
     }
 }

@@ -6,14 +6,13 @@ export default class GridDataProvider {
 
     async getFilters(name) {
         try {
-        const filter = await fetch(`https://pokeapi.co/api/v2/${name}`);
-        const data = await filter.json();
+            const filter = await fetch(`https://pokeapi.co/api/v2/${name}`);
+            const data = await filter.json();
 
-        return this._normalizer.normalizeFilters(data.results);
-    } catch (reason) {
-        console.error('There was an error!', reason);
-        throw new Error('There was an error fetching the filters');
-      }
-
+            return this._normalizer.normalizeFilters(data.results);
+        } catch (reason) {
+            console.error('There was an error!', reason);
+            throw new Error('There was an error fetching the filters');
+        }
     }
 }

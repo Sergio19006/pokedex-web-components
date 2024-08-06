@@ -3,7 +3,6 @@ export default class Card extends HTMLElement {
 
   constructor() {
     super();
-    this._internals = this.attachInternals();
     this.pokemon = this.getAttribute('pokemon');
 
   }
@@ -19,15 +18,24 @@ export default class Card extends HTMLElement {
     this.render();
   }
 
-  render() {
-    this.innerHTML = `<div class="card">
+  removeSkeleton() {
+    this.querySelector('.card__loading')?.remove();
+  }
+
+  template() {
+    this.innerHTML = `
+      <div class="card">
         <div class="card__loading card__text">Loading...</div>
-        ${this.pokemon.image ? `<img class="card__image" loading="lazy"  src="${this.pokemon.image}" alt="${this.pokemon.name}">` : ''}
-        <span class="card__text">${this.pokemon.name}</span>
+          <img class="card__image" loading="lazy" src="${this.pokemon.image}" alt="${this.pokemon.name}"/>
+          <span class="card__text">
+            ${this.pokemon.name}
+          </span>
       </div>`;
-    this.querySelector('.card__image').addEventListener('load', () => {
-      this.querySelector('.card__loading')?.remove();
-    });
+  }
+
+  render() {
+    this.template();
+    this.querySelector('.card__image').addEventListener('load', this.removeSkeleton.bind(this));
   }
 }
 customElements.define('card-component', Card);

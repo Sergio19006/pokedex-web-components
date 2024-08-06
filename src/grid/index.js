@@ -1,4 +1,4 @@
-import GridManager from './services/gridManager';
+import GridManager from './services/GridManager';
 import './index.less';
 import './components/card/index.js';
 import './components/filters/index.js';
@@ -24,9 +24,6 @@ export default class Grid extends HTMLElement {
             </div> 
         </div>
       `.trim();
-      this.querySelector('search-component').addEventListener('search', (event) => {
-        this.filterPokemons(event.detail);
-      });
     }
 
     async connectedCallback() {
@@ -72,33 +69,34 @@ export default class Grid extends HTMLElement {
 
     render() {
         this._updatePokemonsToRender()
-        this.template()
+        this.template();
         this.renderGrid();
+        this.querySelector('search-component').addEventListener('search', (event) => {
+            this.filterPokemons(event.detail);
+        });
         this.querySelector('filters-component').addEventListener('filter', (event) => {
             this.filterPokemons(event.detail.filters);
         });
+        this.querySelector('.grid__load-more')?.addEventListener('click', this.loadMoreEventHandler.bind(this));
     }
 
     renderGrid() {
         const gridElement = this.querySelector('.grid-container');
-        if (gridElement) {
-            if (this.pokemonsToRender.length) {
-                gridElement.innerHTML =
-                    `<ul class="grid">
-                    ${this.pokemonsToRender.map(pokemon =>
-                        `<li class="grid-element">
-                            <card-component pokemon='${encodeURIComponent(JSON.stringify(pokemon))}'></card-component>
-                        </li>`
-                    ).join('')}
-                    </ul>
-                    ${this.offset < this.pokemons.length ? '<button class="grid__load-more">Load More</button>' : ''}`
-                this.querySelector('.grid__load-more')?.addEventListener('click', this.loadMoreEventHandler.bind(this));
-            } else {
-                gridElement.innerHTML =
-                    '<div class="grid"> <span class="grid__error-text"> No hay resultados para esta búsqueda </span>  </div>';
-            }
+        if(!gridElement) return;
+        if (!this.pokemonsToRender.length) {
+            gridElement.innerHTML =
+                '<div class="grid"> <span class="grid__error-text"> No hay resultados para esta búsqueda </span>  </div>';
+            return 
         }
-    }
-
+        gridElement.innerHTML =
+            `<ul class="grid">
+            ${this.pokemonsToRender.map(pokemon =>
+                `<li class="grid-element">
+                    <card-component pokemon='${encodeURIComponent(JSON.stringify(pokemon))}'></card-component>
+                </li>`
+            ).join('')}
+            </ul>
+            ${this.offset < this.pokemons.length ? '<button class="grid__load-more">Load More</button>' : ''}`
+        }
 }
 customElements.define('grid-component', Grid);

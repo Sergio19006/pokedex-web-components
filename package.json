@@ -1,25 +1,24 @@
 {
-  "name": "javascript-boilerplate",
+  "name": "poketest",
   "version": "1.0.0",
-  "description": "JavaScript multipage boilerplate using webpack 5",
+  "description": "poketest",
   "main": "index.js",
+  "homepage": "https://github.com/Sergio19006/pokedexTest/",
   "scripts": {
     "dev": "webpack serve --mode=development & webpack --mode development",
     "build": "webpack --mode production",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "prettier:fix": "prettier . --write",
+    "predeploy": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "lint-staged": {
     "*.{js}": [
       "eslint --fix",
       "prettier . --check"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sehrishnaveed/javascript-boilerplate.git"
   },
   "keywords": [],
   "author": "",
@@ -34,7 +33,6 @@
     "eslint": "^8.48.0",
     "eslint-webpack-plugin": "^4.0.1",
     "html-webpack-plugin": "^5.5.3",
-    "husky": "^8.0.3",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
     "lint-staged": "^14.0.1",
@@ -46,5 +44,8 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
