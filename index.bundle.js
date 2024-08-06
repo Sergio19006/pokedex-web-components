@@ -913,8 +913,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this,
-        _this$querySelector;
+      var _this2 = this;
       this._updatePokemonsToRender();
       this.template();
       this.renderGrid();
@@ -924,11 +923,11 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       this.querySelector('filters-component').addEventListener('filter', function (event) {
         _this2.filterPokemons(event.detail.filters);
       });
-      (_this$querySelector = this.querySelector('.grid__load-more')) === null || _this$querySelector === void 0 || _this$querySelector.addEventListener('click', this.loadMoreEventHandler.bind(this));
     }
   }, {
     key: "renderGrid",
     value: function renderGrid() {
+      var _this$querySelector;
       var gridElement = this.querySelector('.grid-container');
       if (!gridElement) return;
       if (!this.pokemonsToRender.length) {
@@ -938,6 +937,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       gridElement.innerHTML = "<ul class=\"grid\">\n            ".concat(this.pokemonsToRender.map(function (pokemon) {
         return "<li class=\"grid-element\">\n                    <card-component pokemon='".concat(encodeURIComponent(JSON.stringify(pokemon)), "'></card-component>\n                </li>");
       }).join(''), "\n            </ul>\n            ").concat(this.offset < this.pokemons.length ? '<button class="grid__load-more">Load More</button>' : '');
+      (_this$querySelector = this.querySelector('.grid__load-more')) === null || _this$querySelector === void 0 || _this$querySelector.addEventListener('click', this.loadMoreEventHandler.bind(this));
     }
   }]);
   return Grid;
