@@ -77,7 +77,6 @@ export default class Grid extends HTMLElement {
         this.querySelector('filters-component').addEventListener('filter', (event) => {
             this.filterPokemons(event.detail.filters);
         });
-        this.querySelector('.grid__load-more')?.addEventListener('click', this.loadMoreEventHandler.bind(this));
     }
 
     renderGrid() {
@@ -97,6 +96,7 @@ export default class Grid extends HTMLElement {
             ).join('')}
             </ul>
             ${this.offset < this.pokemons.length ? '<button class="grid__load-more">Load More</button>' : ''}`
+            this.querySelector('.grid__load-more')?.addEventListener('click', this.loadMoreEventHandler.bind(this));
         }
 }
 customElements.define('grid-component', Grid);
