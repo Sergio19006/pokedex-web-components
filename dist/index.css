@@ -285,6 +285,10 @@ button.dark {
   display: block;
   border-bottom: 2px solid #4CAF50;
 }
+.card .hidden {
+  visibility: hidden;
+  height: 0px;
+}
 .card__text {
   font-size: 1.5em;
   font-weight: bold;
@@ -292,10 +296,9 @@ button.dark {
   margin: 10px 0;
 }
 .card__loading {
-  display: flex;
-  align-items: center;
-  width: 373px;
-  height: 230px;
+  animation: skeleton-loading 2s infinite ease-in;
+  height: 300px;
+  width: 300px;
 }
 .card__info {
   padding: 15px;
@@ -311,6 +314,14 @@ button.dark {
   font-size: 1.2em;
   color: #000;
   font-weight: bold;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-color: #d7d5d5;
+  }
+  100% {
+    background-color: #aeadad;
+  }
 }
 
 .filters {
