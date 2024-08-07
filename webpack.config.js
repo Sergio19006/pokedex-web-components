@@ -10,6 +10,7 @@ const mainHtmlPage = [
     template: './src/index.html',
     filename: 'index.html',
     chunks: ['index'],
+    favicon: "./src/assets/images/favicon.ico"
   }),
 ];
 const htmlPluginEntries = mainHtmlPage.concat(
@@ -30,11 +31,11 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'images/[name][ext]',
+    assetModuleFilename: 'assets/images/[name][ext]',
     clean: true,
   },
   devServer: {
-    watchFiles: ['src/*.html', 'src/*/*.html', 'src/*/*.js'],
+    watchFiles: ['src/*.html', 'src/*/*.html', 'src/*/*.js', 'src/*/*.ico'],
     static: path.resolve(__dirname, './dist'),
     hot: true,
     open: true,
@@ -68,7 +69,7 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
         type: 'asset/resource',
-      },
+      }
     ],
   },
   optimization: {

@@ -740,7 +740,6 @@ function filters_isNativeFunction(fn) { return Function.toString.call(fn).indexO
 function filters_setPrototypeOf(o, p) { filters_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return filters_setPrototypeOf(o, p); }
 function filters_getPrototypeOf(o) { filters_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return filters_getPrototypeOf(o); }
 
-
 var Filters = /*#__PURE__*/function (_HTMLElement) {
   filters_inherits(Filters, _HTMLElement);
   var _super = filters_createSuper(Filters);

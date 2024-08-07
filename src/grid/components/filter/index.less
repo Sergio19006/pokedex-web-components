@@ -31,32 +31,20 @@
       padding-bottom: 5px;
     }
 
-    ul.filter {
+    .filter {
       display: grid;
       grid-template-columns: 1fr 1fr;
       list-style: none;
       padding: 0;
+      gap: 5px;
 
-      li {
+      .filter-element {
         margin-bottom: 10px;
         display: flex;
         align-items: center;
-
-        input[type="checkbox"] {
-          margin-right: 10px;
-          accent-color: @checkbox-color;
-        }
-
-        label {
-          font-size: 1em;
-          color: @subtext-color;
-          cursor: pointer;
-          transition: color 0.3s;
-
-          &:hover {
-            color: @highlight-color;
-          }
-        }
+      }
+      .filter-button.selected{
+        border: solid 4px  @primary-color;
       }
     }
   }

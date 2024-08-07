@@ -19,9 +19,8 @@ export default class Filter extends HTMLElement {
       ${this.type}
       <ul class="filter">
         ${this.filters.map(filter =>
-        `<li>
-          <input type="checkbox" id="${filter.name}" name="${filter.name}" />
-          <label for="${filter.name}">${filter.name}</label>
+        `<li class"filter-element">
+            <button class="filter-button ${filter.name}">${filter.name}</button>
         </li>`
         ).join('')}
       </ul>
@@ -38,9 +37,10 @@ export default class Filter extends HTMLElement {
     this.filters = await this._manager.getFilters(type);
   }
 
-  async emitFilter() {
+  async emitFilter(event) {
+    event.target.classList.toggle('selected');
     const filters = this.filters.filter(filter => {
-      return this.querySelector(`#${filter.name}`).checked;
+      return this.querySelector(`button.${filter.name}`).classList.contains('selected');
     });
     this.dispatchEvent(new CustomEvent('filter', {
       detail: { filters, type: this.type }
@@ -49,8 +49,8 @@ export default class Filter extends HTMLElement {
 
   render() {
     this.template();
-    this.querySelectorAll('input').forEach(input => {
-      input.addEventListener('change', this.emitFilter.bind(this));
+    this.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', this.emitFilter.bind(this));
     });
   }
 }

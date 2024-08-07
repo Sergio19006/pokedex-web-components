@@ -1,5 +1,6 @@
 import './index.less';
 import'./grid/index.js';
+import './assets/images/favicon.ico'
 
 
 var isMobile = (/iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent) || screen.availWidth < 480)

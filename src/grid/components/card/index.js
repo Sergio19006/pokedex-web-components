@@ -28,9 +28,9 @@ export default class Card extends HTMLElement {
 
   async loadPokeInfo () {
     if(this.loadInfo) return;
+    this.loadInfo = true;
     const info = await this._manager.getPokemon(this.pokemon.id);
     this.renderPokemonInfo(info);
-    this.loadInfo = true;
   }
 
   template() {
@@ -54,15 +54,15 @@ export default class Card extends HTMLElement {
     const info = document.createElement('div')
     info.classList.add('card__info')
     info.innerHTML = `
-      <span> id: ${pokemonInfo.id} </span>
+      <span class="card__info__number"> Número: ${pokemonInfo.id} </span>
         <div class="card__info__types">
-          ${pokemonInfo.types.map(({ type }) => 
-            `<span class="${type.name}"> 
+          ${pokemonInfo.types.map(({ type }) =>
+            `<span class="${type.name}">
               ${type.name}
             </span>`
-          )} 
+          ).join('')} 
         </div>
-      <span> peso:${pokemonInfo.weight} </span>
+      <span class="card__info__weigth"> peso:${pokemonInfo.weight} </span>
     `
     this.querySelector('.card').appendChild(info);
 
