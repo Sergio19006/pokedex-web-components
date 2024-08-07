@@ -931,7 +931,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       var gridElement = this.querySelector('.grid-container');
       if (!gridElement) return;
       if (!this.pokemonsToRender.length) {
-        gridElement.innerHTML = '<div class="grid"> <span class="grid__error-text"> No hay resultados para esta búsqueda </span>  </div>';
+        gridElement.innerHTML = "div class=\"grid\"> \n                    <span class=\"grid__error-text\"> No hay resultados para esta b\xFAsqueda </span>  \n                </div>";
         return;
       }
       gridElement.innerHTML = "<ul class=\"grid\">\n            ".concat(this.pokemonsToRender.map(function (pokemon) {
