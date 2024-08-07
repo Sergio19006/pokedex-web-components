@@ -84,7 +84,9 @@ export default class Grid extends HTMLElement {
         if(!gridElement) return;
         if (!this.pokemonsToRender.length) {
             gridElement.innerHTML =
-                '<div class="grid"> <span class="grid__error-text"> No hay resultados para esta búsqueda </span>  </div>';
+                `div class="grid"> 
+                    <span class="grid__error-text"> No hay resultados para esta búsqueda </span>  
+                </div>`;
             return 
         }
         gridElement.innerHTML =
