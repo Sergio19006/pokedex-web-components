@@ -20,13 +20,14 @@ export default class Card extends HTMLElement {
 
   removeSkeleton() {
     this.querySelector('.card__loading')?.remove();
+    this.querySelector('.card__image')?.classList.remove('hidden');
   }
 
   template() {
     this.innerHTML = `
       <div class="card">
         <div class="card__loading card__text">Loading...</div>
-          <img class="card__image" loading="lazy" src="${this.pokemon.image}" alt="${this.pokemon.name}"/>
+          <img class="card__image hidden" loading="lazy" src="${this.pokemon.image}" alt="${this.pokemon.name}"/>
           <span class="card__text">
             ${this.pokemon.name}
           </span>
