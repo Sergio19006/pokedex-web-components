@@ -1,45 +1,5 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src;
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) {
-/******/ 					var i = scripts.length - 1;
-/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
-/******/ 				}
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 var __webpack_exports__ = {};
 
 ;// CONCATENATED MODULE: ./src/domain/models/Pokemon.js
@@ -660,8 +620,9 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "template",
     value: function template() {
-      this.innerHTML = "\n    <div class=\"filters\">\n      ".concat(this.type, "\n      <ul class=\"filter\">\n        ").concat(this.filters.map(function (filter) {
-        return "<li class\"filter-element\">\n            <button class=\"filter-button ".concat(filter.name, "\">").concat(filter.name, "</button>\n        </li>");
+      var _this2 = this;
+      this.innerHTML = "\n    <div class=\"filters\">\n      ".concat(this.type.toUpperCase(), "\n      <ul class=\"filter\">\n        ").concat(this.filters.map(function (filter) {
+        return "<li class\"filter-element\">\n            <button \n            class=\"filter-button ".concat(filter.name, " ").concat(_this2.type === 'pokemon-color' ? 'rounded' : '', "\">\n              ").concat(_this2.type !== 'pokemon-color' ? filter.name : '', "\n            </button>\n        </li>");
       }).join(''), "\n      </ul>\n    </div>");
     }
   }, {
@@ -713,14 +674,14 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
     key: "emitFilter",
     value: function () {
       var _emitFilter = filter_asyncToGenerator( /*#__PURE__*/filter_regeneratorRuntime().mark(function _callee3(event) {
-        var _this2 = this;
+        var _this3 = this;
         var filters;
         return filter_regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
               event.target.classList.toggle('selected');
               filters = this.filters.filter(function (filter) {
-                return _this2.querySelector("button.".concat(filter.name)).classList.contains('selected');
+                return _this3.querySelector("button.".concat(filter.name)).classList.contains('selected');
               });
               this.dispatchEvent(new CustomEvent('filter', {
                 detail: {
@@ -742,10 +703,10 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
       this.template();
       this.querySelectorAll('button').forEach(function (button) {
-        button.addEventListener('click', _this3.emitFilter.bind(_this3));
+        button.addEventListener('click', _this4.emitFilter.bind(_this4));
       });
     }
   }]);
@@ -1097,10 +1058,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
 }( /*#__PURE__*/grid_wrapNativeSuper(HTMLElement));
 
 customElements.define('grid-component', Grid);
-;// CONCATENATED MODULE: ./src/assets/images/favicon.ico
-const favicon_namespaceObject = __webpack_require__.p + "assets/images/favicon.ico";
 ;// CONCATENATED MODULE: ./src/index.js
-
 
 
 var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent) || screen.availWidth < 480;

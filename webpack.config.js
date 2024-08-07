@@ -66,11 +66,6 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
       },
       {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-      {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
         type: 'asset/resource',
         generator: {

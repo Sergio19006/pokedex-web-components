@@ -2,6 +2,10 @@ body .pokedex-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  flex-direction: column;
+}
+body .pokedex-container .pokedex-image {
+  width: 10vw;
 }
 body .go-to-top {
   position: fixed;
@@ -37,6 +41,9 @@ body .go-to-top {
 span,
 button {
   text-transform: uppercase;
+  padding: 5px;
+  border-radius: 12%;
+  border: none;
 }
 span.normal,
 button.normal {
@@ -334,13 +341,21 @@ button.dark {
   padding: 0;
   gap: 5px;
 }
-.filters filter-component .filter .filter-element {
+.filters filter-component .filter.element {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
-.filters filter-component .filter .filter-button.selected {
-  border: solid 4px #4CAF50;
+.filters filter-component .filter-button.selected {
+  outline: 1px solid black;
+  outline-offset: 1px;
+}
+.filters filter-component .rounded {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  outline: 1px solid gray;
+  outline-offset: 1px;
 }
 .filters-component {
   padding: 20px;
