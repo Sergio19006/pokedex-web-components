@@ -41,10 +41,9 @@
   }
 
   &__loading {
-    display: flex;
-    align-items: center;
-    width: 373px;
-    height: 230px;
+    animation: skeleton-loading 2s infinite ease-in;
+    height: 300px;
+    width: 300px;
   }
 
   &__info {
@@ -63,5 +62,14 @@
       color: @highlight-color;
       font-weight: bold;
     }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgb(215, 213, 213)
+  }
+  100% {
+    background-color: rgb(174, 173, 173)
   }
 }

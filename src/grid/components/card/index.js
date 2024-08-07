@@ -36,7 +36,7 @@ export default class Card extends HTMLElement {
   template() {
     this.innerHTML = `
       <div class="card">
-        <div class="card__loading card__text">Loading...</div>
+        <div class="card__loading"></div>
           <img class="card__image hidden" loading="lazy" src="${this.pokemon.image}" alt="${this.pokemon.name}"/>
           <span class="card__text">
             ${this.pokemon.name}
