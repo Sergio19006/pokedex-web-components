@@ -906,6 +906,10 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
     _this._manager = new GridManager();
     _this.error = '';
     _this.allPokemons = [];
+    _this.filteredPokemons = [];
+    _this.searchedPokemons = [];
+    _this.activesSearch = '';
+    _this.activesFilters = [];
     _this.criterial = {
       filters: []
     };
@@ -966,20 +970,22 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
             case 3:
               this.allPokemons = _context2.sent;
               this.pokemons = this.allPokemons;
+              this.filteredPokemons = [];
+              this.searchedPokemons = [];
               this._updatePokemonsToRender();
-              _context2.next = 13;
+              _context2.next = 15;
               break;
-            case 8:
-              _context2.prev = 8;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](0);
               this.allPokemons = [];
               this.error = _context2.t0;
               this.render();
-            case 13:
+            case 15:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, this, [[0, 8]]);
+        }, _callee2, this, [[0, 10]]);
       }));
       function getPokemons() {
         return _getPokemons.apply(this, arguments);
@@ -987,43 +993,125 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       return getPokemons;
     }()
   }, {
-    key: "filterPokemons",
+    key: "searchPokemons",
     value: function () {
-      var _filterPokemons = grid_asyncToGenerator( /*#__PURE__*/grid_regeneratorRuntime().mark(function _callee3(criterial) {
-        var filteredPokemons;
+      var _searchPokemons = grid_asyncToGenerator( /*#__PURE__*/grid_regeneratorRuntime().mark(function _callee3(criterial) {
         return grid_regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              if (!(criterial.length === 0)) {
-                _context3.next = 5;
-                break;
-              }
+              this.activesSearch = criterial;
               _context3.next = 3;
-              return this.getPokemons();
+              return this._fetchAndRenderPokemons();
             case 3:
-              this.renderGrid();
-              return _context3.abrupt("return");
-            case 5:
-              _context3.next = 7;
-              return this._manager.getPokemonsByCriterial(criterial);
-            case 7:
-              filteredPokemons = _context3.sent;
-              this.pokemons = this.allPokemons.filter(function (pokemon) {
-                return filteredPokemons.includes(pokemon.name);
-              });
-              this._updatePokemonsToRender();
-              this.renderGrid();
-            case 11:
             case "end":
               return _context3.stop();
           }
         }, _callee3, this);
       }));
-      function filterPokemons(_x) {
+      function searchPokemons(_x) {
+        return _searchPokemons.apply(this, arguments);
+      }
+      return searchPokemons;
+    }()
+  }, {
+    key: "filterPokemons",
+    value: function () {
+      var _filterPokemons = grid_asyncToGenerator( /*#__PURE__*/grid_regeneratorRuntime().mark(function _callee4(criterial) {
+        return grid_regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              this.activesFilters = criterial;
+              _context4.next = 3;
+              return this._fetchAndRenderPokemons();
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, this);
+      }));
+      function filterPokemons(_x2) {
         return _filterPokemons.apply(this, arguments);
       }
       return filterPokemons;
     }()
+  }, {
+    key: "_fetchAndRenderPokemons",
+    value: function () {
+      var _fetchAndRenderPokemons2 = grid_asyncToGenerator( /*#__PURE__*/grid_regeneratorRuntime().mark(function _callee5() {
+        var searchResults, filterResults, intersectionPokemons;
+        return grid_regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              if (!(!this.activesFilters.length && !this.activesSearch.length)) {
+                _context5.next = 5;
+                break;
+              }
+              _context5.next = 3;
+              return this.getPokemons();
+            case 3:
+              this.renderGrid();
+              return _context5.abrupt("return");
+            case 5:
+              if (!this.activesSearch.length) {
+                _context5.next = 11;
+                break;
+              }
+              _context5.next = 8;
+              return this._manager.getPokemonsByCriterial(this.activesSearch);
+            case 8:
+              _context5.t0 = _context5.sent;
+              _context5.next = 12;
+              break;
+            case 11:
+              _context5.t0 = [];
+            case 12:
+              searchResults = _context5.t0;
+              if (!this.activesFilters.length) {
+                _context5.next = 19;
+                break;
+              }
+              _context5.next = 16;
+              return this._manager.getPokemonsByCriterial(this.activesFilters);
+            case 16:
+              _context5.t1 = _context5.sent;
+              _context5.next = 20;
+              break;
+            case 19:
+              _context5.t1 = [];
+            case 20:
+              filterResults = _context5.t1;
+              this.searchedPokemons = searchResults;
+              this.filteredPokemons = filterResults;
+              intersectionPokemons = this._getIntersection(searchResults, filterResults);
+              this.pokemons = this.allPokemons.filter(function (pokemon) {
+                return intersectionPokemons.includes(pokemon.name);
+              });
+              this._updatePokemonsToRender();
+              this.renderGrid();
+            case 27:
+            case "end":
+              return _context5.stop();
+          }
+        }, _callee5, this);
+      }));
+      function _fetchAndRenderPokemons() {
+        return _fetchAndRenderPokemons2.apply(this, arguments);
+      }
+      return _fetchAndRenderPokemons;
+    }()
+  }, {
+    key: "_getIntersection",
+    value: function _getIntersection(searchResults, filterResults) {
+      if (searchResults.length && filterResults.length) {
+        return searchResults.filter(function (pokemon) {
+          return filterResults.includes(pokemon);
+        });
+      } else if (searchResults.length) {
+        return searchResults;
+      } else {
+        return filterResults;
+      }
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1032,7 +1120,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       this.template();
       this.renderGrid();
       this.querySelector('search-component').addEventListener('search', function (event) {
-        _this2.filterPokemons(event.detail);
+        _this2.searchPokemons(event.detail);
       });
       this.querySelector('filters-component').addEventListener('filter', function (event) {
         _this2.filterPokemons(event.detail.filters);
