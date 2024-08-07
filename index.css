@@ -92,6 +92,16 @@ body .go-to-top {
 .card .hidden {
   visibility: hidden;
 }
+.card__info {
+  display: flex;
+  flex-direction: column;
+}
+.card__info__types {
+  display: flex;
+}
+.card__info__types .grass {
+  color: green;
+}
 
 .filters {
   background-color: white;
