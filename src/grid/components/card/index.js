@@ -1,9 +1,12 @@
+import GridManager from '../../services/GridManager';
 import './index.less';
 export default class Card extends HTMLElement {
 
   constructor() {
     super();
     this.pokemon = this.getAttribute('pokemon');
+    this._manager = new GridManager();
+    this.loadInfo = false;
 
   }
 
@@ -23,6 +26,13 @@ export default class Card extends HTMLElement {
     this.querySelector('.card__image')?.classList.remove('hidden');
   }
 
+  async loadPokeInfo () {
+    if(this.loadInfo) return;
+    const info = await this._manager.getPokemon(this.pokemon.id);
+    this.renderPokemonInfo(info);
+    this.loadInfo = true;
+  }
+
   template() {
     this.innerHTML = `
       <div class="card">
@@ -37,6 +47,25 @@ export default class Card extends HTMLElement {
   render() {
     this.template();
     this.querySelector('.card__image').addEventListener('load', this.removeSkeleton.bind(this));
+    this.querySelector('.card__image').addEventListener('mouseover', this.loadPokeInfo.bind(this));
+  }
+
+  renderPokemonInfo (pokemonInfo) {
+    const info = document.createElement('div')
+    info.classList.add('card__info')
+    info.innerHTML = `
+      <span> id: ${pokemonInfo.id} </span>
+        <div class="card__info__types">
+          ${pokemonInfo.types.map(({ type }) => 
+            `<span class="${type.name}"> 
+              ${type.name}
+            </span>`
+          )} 
+        </div>
+      <span> peso:${pokemonInfo.weight} </span>
+    `
+    this.querySelector('.card').appendChild(info);
+
   }
 }
 customElements.define('card-component', Card);

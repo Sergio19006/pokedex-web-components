@@ -295,13 +295,14 @@ var Card = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "removeSkeleton",
     value: function removeSkeleton() {
-      var _this$querySelector;
+      var _this$querySelector, _this$querySelector2;
       (_this$querySelector = this.querySelector('.card__loading')) === null || _this$querySelector === void 0 || _this$querySelector.remove();
+      (_this$querySelector2 = this.querySelector('.card__image')) === null || _this$querySelector2 === void 0 || _this$querySelector2.classList.remove('hidden');
     }
   }, {
     key: "template",
     value: function template() {
-      this.innerHTML = "\n      <div class=\"card\">\n        <div class=\"card__loading card__text\">Loading...</div>\n          <img class=\"card__image\" loading=\"lazy\" src=\"".concat(this.pokemon.image, "\" alt=\"").concat(this.pokemon.name, "\"/>\n          <span class=\"card__text\">\n            ").concat(this.pokemon.name, "\n          </span>\n      </div>");
+      this.innerHTML = "\n      <div class=\"card\">\n        <div class=\"card__loading card__text\">Loading...</div>\n          <img class=\"card__image hidden\" loading=\"lazy\" src=\"".concat(this.pokemon.image, "\" alt=\"").concat(this.pokemon.name, "\"/>\n          <span class=\"card__text\">\n            ").concat(this.pokemon.name, "\n          </span>\n      </div>");
     }
   }, {
     key: "render",
@@ -931,7 +932,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       var gridElement = this.querySelector('.grid-container');
       if (!gridElement) return;
       if (!this.pokemonsToRender.length) {
-        gridElement.innerHTML = "div class=\"grid\"> \n                    <span class=\"grid__error-text\"> No hay resultados para esta b\xFAsqueda </span>  \n                </div>";
+        gridElement.innerHTML = "<div class=\"grid\"> \n                    <span class=\"grid__error-text\"> No hay resultados para esta b\xFAsqueda </span>  \n                </div>";
         return;
       }
       gridElement.innerHTML = "<ul class=\"grid\">\n            ".concat(this.pokemonsToRender.map(function (pokemon) {

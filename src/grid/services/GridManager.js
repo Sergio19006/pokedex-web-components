@@ -16,4 +16,8 @@ export default class GridManager {
     }
     return await this._provider.getPokemonsByCriterial(criterial);
   }
+
+  async getPokemon(id) {
+    return await this._provider.getPokemon(id);
+  }
 }

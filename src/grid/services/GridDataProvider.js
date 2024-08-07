@@ -29,4 +29,15 @@ export default class GridDataProvider {
             throw new Error('There was an error fetching the pokemons by criteria');
         }
     }
+
+    async getPokemon(id) {
+        try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const data = await response.json();
+            return this._normalizer.normalizePokemon(data);
+        } catch (error) {
+            console.error('There was an error!', error);
+            throw new Error('There was an error fetching the pokemons');
+        }
+    }
 }

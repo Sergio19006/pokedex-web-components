@@ -59,12 +59,12 @@ body .go-to-top {
   width: 150px;
 }
 .grid__error-text {
-  color: red;
+  color: white;
   font-size: 14px;
   grid-column: 5 / 9;
 }
 .desktop .grid__error-text {
-  grid-column: span 1;
+  grid-column: span 2;
 }
 
 .card {
@@ -78,7 +78,7 @@ body .go-to-top {
   display: flex;
   align-items: center;
   width: 373px;
-  height: 250px;
+  height: 230px;
 }
 .card__image {
   width: 100%;
@@ -88,6 +88,9 @@ body .go-to-top {
 .card__text {
   text-transform: capitalize;
   font-size: x-large;
+}
+.card .hidden {
+  visibility: hidden;
 }
 
 .filters {

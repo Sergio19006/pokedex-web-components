@@ -15,4 +15,8 @@ export default class GridNormalizer {
       return new Pokemon(name) 
   });
   }
+
+  normalizePokemon(pokemon) {
+      return new Pokemon('', '', '', pokemon.id, pokemon.types, pokemon.weight) 
+  }
 }
