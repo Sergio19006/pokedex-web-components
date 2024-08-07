@@ -3,7 +3,13 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    flex-direction: column;
+    .pokedex-image {
+      width: 10vw;
+    }
   }
+
+
   .go-to-top {
     position: fixed;
     bottom: 50px;
@@ -41,6 +47,9 @@ body {
 
 span, button {
   text-transform: uppercase;
+  padding: 5px;
+  border-radius: 12%;
+  border: none;
   &.normal {
     background-color: var(--type-normal);
     color: var(--clr-black);

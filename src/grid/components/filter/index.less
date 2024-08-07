@@ -38,14 +38,22 @@
       padding: 0;
       gap: 5px;
 
-      .filter-element {
+      &.element {
         margin-bottom: 10px;
         display: flex;
         align-items: center;
       }
-      .filter-button.selected{
-        border: solid 4px  @primary-color;
+      &-button.selected {
+        outline: 1px solid black;
+        outline-offset: 1px;
       }
+    }
+    .rounded {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      outline: 1px solid gray;
+      outline-offset: 1px;
     }
   }
 }

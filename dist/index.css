@@ -14,6 +14,7 @@ body .go-to-top {
 }
 :root {
   --clr-white: #f7f7f7;
+  --clr-black: #000000;
   --type-normal: #A8A878;
   --type-fire: #F08030;
   --type-water: #6890F0;
@@ -32,6 +33,155 @@ body .go-to-top {
   --type-dragon: #7038F8;
   --type-steel: #B8B8D0;
   --type-fairy: #F0B6BC;
+}
+span,
+button {
+  text-transform: uppercase;
+}
+span.normal,
+button.normal {
+  background-color: var(--type-normal);
+  color: var(--clr-black);
+}
+span.fire,
+button.fire {
+  background-color: var(--type-fire);
+  color: var(--clr-black);
+}
+span.water,
+button.water {
+  background-color: var(--type-water);
+  color: var(--clr-white);
+}
+span.grass,
+button.grass {
+  background-color: var(--type-grass);
+  color: var(--clr-black);
+}
+span.electric,
+button.electric {
+  background-color: var(--type-electric);
+  color: var(--clr-black);
+}
+span.ice,
+button.ice {
+  background-color: var(--type-ice);
+  color: var(--clr-black);
+}
+span.fighting,
+button.fighting {
+  background-color: var(--type-fighting);
+  color: var(--clr-white);
+}
+span.poison,
+button.poison {
+  background-color: var(--type-poison);
+  color: var(--clr-white);
+}
+span.ground,
+button.ground {
+  background-color: var(--type-ground);
+  color: var(--clr-black);
+}
+span.flying,
+button.flying {
+  background-color: var(--type-flying);
+  color: var(--clr-black);
+}
+span.psychic,
+button.psychic {
+  background-color: var(--type-psychic);
+  color: var(--clr-black);
+}
+span.bug,
+button.bug {
+  background-color: var(--type-bug);
+  color: var(--clr-black);
+}
+span.rock,
+button.rock {
+  background-color: var(--type-rock);
+  color: var(--clr-black);
+}
+span.ghost,
+button.ghost {
+  background-color: var(--type-ghost);
+  color: var(--clr-white);
+}
+span.dark,
+button.dark {
+  background-color: var(--type-dark);
+  color: var(--clr-white);
+}
+span.dragon,
+button.dragon {
+  background-color: var(--type-dragon);
+  color: var(--clr-white);
+}
+span.steel,
+button.steel {
+  background-color: var(--type-steel);
+  color: var(--clr-black);
+}
+span.fairy,
+button.fairy {
+  background-color: var(--type-fairy);
+  color: var(--clr-black);
+}
+span.black,
+button.black {
+  background-color: black;
+  color: var(--clr-white);
+}
+span.blue,
+button.blue {
+  background-color: blue;
+  color: var(--clr-white);
+}
+span.brown,
+button.brown {
+  background-color: brown;
+  color: var(--clr-white);
+}
+span.gray,
+button.gray {
+  background-color: gray;
+  color: var(--clr-black);
+}
+span.green,
+button.green {
+  background-color: green;
+  color: var(--clr-black);
+}
+span.pink,
+button.pink {
+  background-color: pink;
+  color: var(--clr-black);
+}
+span.purple,
+button.purple {
+  background-color: purple;
+  color: var(--clr-white);
+}
+span.red,
+button.red {
+  background-color: red;
+  color: var(--clr-white);
+}
+span.white,
+button.white {
+  background-color: white;
+  color: var(--clr-black);
+}
+span.yellow,
+button.yellow {
+  background-color: yellow;
+  color: var(--clr-black);
+}
+span.dark,
+button.dark {
+  background-color: var(--type-dark);
+  color: var(--clr-white);
 }
 
 .container {
@@ -55,6 +205,8 @@ body .go-to-top {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 80vw;
+  justify-content: center;
 }
 .grid-element {
   grid-column: span 12;
@@ -97,7 +249,7 @@ body .go-to-top {
   outline: none;
 }
 .grid__error-text {
-  color: white;
+  color: black;
   font-size: 14px;
   grid-column: 5 / 9;
 }
@@ -142,97 +294,13 @@ body .go-to-top {
   padding: 15px;
   transition: height 0.5s;
 }
-.card__info span {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 1.1em;
-  color: #555;
-}
 .card__info__types {
   display: flex;
   justify-content: center;
   gap: 5px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
-.card__info__types span {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.card__info__types span.normal {
-  background-color: var(--type-normal);
-  color: var(--clr-black);
-}
-.card__info__types span.fire {
-  background-color: var(--type-fire);
-  color: var(--clr-black);
-}
-.card__info__types span.water {
-  background-color: var(--type-water);
-  color: var(--clr-white);
-}
-.card__info__types span.grass {
-  background-color: var(--type-grass);
-  color: var(--clr-black);
-}
-.card__info__types span.electric {
-  background-color: var(--type-electric);
-  color: var(--clr-black);
-}
-.card__info__types span.ice {
-  background-color: var(--type-ice);
-  color: var(--clr-black);
-}
-.card__info__types span.fighting {
-  background-color: var(--type-fighting);
-  color: var(--clr-white);
-}
-.card__info__types span.poison {
-  background-color: var(--type-poison);
-  color: var(--clr-white);
-}
-.card__info__types span.ground {
-  background-color: var(--type-ground);
-  color: var(--clr-black);
-}
-.card__info__types span.flying {
-  background-color: var(--type-flying);
-  color: var(--clr-black);
-}
-.card__info__types span.psychic {
-  background-color: var(--type-psychic);
-  color: var(--clr-black);
-}
-.card__info__types span.bug {
-  background-color: var(--type-bug);
-  color: var(--clr-black);
-}
-.card__info__types span.rock {
-  background-color: var(--type-rock);
-  color: var(--clr-black);
-}
-.card__info__types span.ghost {
-  background-color: var(--type-ghost);
-  color: var(--clr-white);
-}
-.card__info__types span.dark {
-  background-color: var(--type-dark);
-  color: var(--clr-white);
-}
-.card__info__types span.dragon {
-  background-color: var(--type-dragon);
-  color: var(--clr-white);
-}
-.card__info__types span.steel {
-  background-color: var(--type-steel);
-  color: var(--clr-black);
-}
-.card__info__types span.fairy {
-  background-color: var(--type-fairy);
-  color: var(--clr-black);
-}
-.card__info span:last-child {
+.card__info__weigth {
   font-size: 1.2em;
   color: #000;
   font-weight: bold;
@@ -259,29 +327,20 @@ body .go-to-top {
   border-bottom: 2px solid #4CAF50;
   padding-bottom: 5px;
 }
-.filters filter-component ul.filter {
+.filters filter-component .filter {
   display: grid;
   grid-template-columns: 1fr 1fr;
   list-style: none;
   padding: 0;
+  gap: 5px;
 }
-.filters filter-component ul.filter li {
+.filters filter-component .filter .filter-element {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
-.filters filter-component ul.filter li input[type="checkbox"] {
-  margin-right: 10px;
-  accent-color: #4CAF50;
-}
-.filters filter-component ul.filter li label {
-  font-size: 1em;
-  color: #555;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.filters filter-component ul.filter li label:hover {
-  color: #000;
+.filters filter-component .filter .filter-button.selected {
+  border: solid 4px #4CAF50;
 }
 .filters-component {
   padding: 20px;

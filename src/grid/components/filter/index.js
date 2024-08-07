@@ -16,11 +16,14 @@ export default class Filter extends HTMLElement {
   template() {
     this.innerHTML = `
     <div class="filters">
-      ${this.type}
+      ${this.type.toUpperCase()}
       <ul class="filter">
         ${this.filters.map(filter =>
         `<li class"filter-element">
-            <button class="filter-button ${filter.name}">${filter.name}</button>
+            <button 
+            class="filter-button ${filter.name} ${this.type === 'pokemon-color' ? 'rounded': ''}">
+              ${this.type !== 'pokemon-color' ? filter.name : ''}
+            </button>
         </li>`
         ).join('')}
       </ul>

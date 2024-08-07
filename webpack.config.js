@@ -35,7 +35,7 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    watchFiles: ['src/*.html', 'src/*/*.html', 'src/*/*.js', 'src/*/*.ico'],
+    watchFiles: ['src/*.html', 'src/*/*.html', 'src/*/*.js'],
     static: path.resolve(__dirname, './dist'),
     hot: true,
     open: true,
@@ -58,6 +58,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        use: 'html-loader'
+      },
+      {
         test: /\.(less)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
       },
@@ -69,6 +73,9 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name][ext]'
+      }
       }
     ],
   },

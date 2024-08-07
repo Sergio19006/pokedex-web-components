@@ -1,5 +1,45 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
 
 ;// CONCATENATED MODULE: ./src/domain/models/Pokemon.js
@@ -382,12 +422,12 @@ var Card = /*#__PURE__*/function (_HTMLElement) {
               }
               return _context.abrupt("return");
             case 2:
-              _context.next = 4;
+              this.loadInfo = true;
+              _context.next = 5;
               return this._manager.getPokemon(this.pokemon.id);
-            case 4:
+            case 5:
               info = _context.sent;
               this.renderPokemonInfo(info);
-              this.loadInfo = true;
             case 7:
             case "end":
               return _context.stop();
@@ -416,10 +456,10 @@ var Card = /*#__PURE__*/function (_HTMLElement) {
     value: function renderPokemonInfo(pokemonInfo) {
       var info = document.createElement('div');
       info.classList.add('card__info');
-      info.innerHTML = "\n      <span> id: ".concat(pokemonInfo.id, " </span>\n        <div class=\"card__info__types\">\n          ").concat(pokemonInfo.types.map(function (_ref) {
+      info.innerHTML = "\n      <span class=\"card__info__number\"> N\xFAmero: ".concat(pokemonInfo.id, " </span>\n        <div class=\"card__info__types\">\n          ").concat(pokemonInfo.types.map(function (_ref) {
         var type = _ref.type;
-        return "<span class=\"".concat(type.name, "\"> \n              ").concat(type.name, "\n            </span>");
-      }), " \n        </div>\n      <span> peso:").concat(pokemonInfo.weight, " </span>\n    ");
+        return "<span class=\"".concat(type.name, "\">\n              ").concat(type.name, "\n            </span>");
+      }).join(''), " \n        </div>\n      <span class=\"card__info__weigth\"> peso:").concat(pokemonInfo.weight, " </span>\n    ");
       this.querySelector('.card').appendChild(info);
     }
   }]);
@@ -621,7 +661,7 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
     key: "template",
     value: function template() {
       this.innerHTML = "\n    <div class=\"filters\">\n      ".concat(this.type, "\n      <ul class=\"filter\">\n        ").concat(this.filters.map(function (filter) {
-        return "<li>\n          <input type=\"checkbox\" id=\"".concat(filter.name, "\" name=\"").concat(filter.name, "\" />\n          <label for=\"").concat(filter.name, "\">").concat(filter.name, "</label>\n        </li>");
+        return "<li class\"filter-element\">\n            <button class=\"filter-button ".concat(filter.name, "\">").concat(filter.name, "</button>\n        </li>");
       }).join(''), "\n      </ul>\n    </div>");
     }
   }, {
@@ -672,14 +712,15 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "emitFilter",
     value: function () {
-      var _emitFilter = filter_asyncToGenerator( /*#__PURE__*/filter_regeneratorRuntime().mark(function _callee3() {
+      var _emitFilter = filter_asyncToGenerator( /*#__PURE__*/filter_regeneratorRuntime().mark(function _callee3(event) {
         var _this2 = this;
         var filters;
         return filter_regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
+              event.target.classList.toggle('selected');
               filters = this.filters.filter(function (filter) {
-                return _this2.querySelector("#".concat(filter.name)).checked;
+                return _this2.querySelector("button.".concat(filter.name)).classList.contains('selected');
               });
               this.dispatchEvent(new CustomEvent('filter', {
                 detail: {
@@ -687,13 +728,13 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
                   type: this.type
                 }
               }));
-            case 2:
+            case 3:
             case "end":
               return _context3.stop();
           }
         }, _callee3, this);
       }));
-      function emitFilter() {
+      function emitFilter(_x5) {
         return _emitFilter.apply(this, arguments);
       }
       return emitFilter;
@@ -703,8 +744,8 @@ var filter_Filter = /*#__PURE__*/function (_HTMLElement) {
     value: function render() {
       var _this3 = this;
       this.template();
-      this.querySelectorAll('input').forEach(function (input) {
-        input.addEventListener('change', _this3.emitFilter.bind(_this3));
+      this.querySelectorAll('button').forEach(function (button) {
+        button.addEventListener('click', _this3.emitFilter.bind(_this3));
       });
     }
   }]);
@@ -1043,7 +1084,7 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
       var gridElement = this.querySelector('.grid-container');
       if (!gridElement) return;
       if (!this.pokemonsToRender.length) {
-        gridElement.innerHTML = "<div class=\"grid\"> \n                    <span class=\"grid__error-text\"> No hay resultados para esta b\xFAsqueda </span>  \n                </div>";
+        gridElement.innerHTML = "<div> \n                    <span class=\"grid__error-text\"> No hay resultados para esta b\xFAsqueda </span>  \n                </div>";
         return;
       }
       gridElement.innerHTML = "<ul class=\"grid\">\n            ".concat(this.pokemonsToRender.map(function (pokemon) {
@@ -1056,7 +1097,10 @@ var Grid = /*#__PURE__*/function (_HTMLElement) {
 }( /*#__PURE__*/grid_wrapNativeSuper(HTMLElement));
 
 customElements.define('grid-component', Grid);
+;// CONCATENATED MODULE: ./src/assets/images/favicon.ico
+const favicon_namespaceObject = __webpack_require__.p + "assets/images/favicon.ico";
 ;// CONCATENATED MODULE: ./src/index.js
+
 
 
 var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent) || screen.availWidth < 480;

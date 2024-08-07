@@ -46,6 +46,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "html-loader": "^5.1.0"
   }
 }
