@@ -402,7 +402,7 @@ var Card = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "template",
     value: function template() {
-      this.innerHTML = "\n      <div class=\"card\">\n        <div class=\"card__loading card__text\">Loading...</div>\n          <img class=\"card__image hidden\" loading=\"lazy\" src=\"".concat(this.pokemon.image, "\" alt=\"").concat(this.pokemon.name, "\"/>\n          <span class=\"card__text\">\n            ").concat(this.pokemon.name, "\n          </span>\n      </div>");
+      this.innerHTML = "\n      <div class=\"card\">\n        <div class=\"card__loading\"></div>\n          <img class=\"card__image hidden\" loading=\"lazy\" src=\"".concat(this.pokemon.image, "\" alt=\"").concat(this.pokemon.name, "\"/>\n          <span class=\"card__text\">\n            ").concat(this.pokemon.name, "\n          </span>\n      </div>");
     }
   }, {
     key: "render",
