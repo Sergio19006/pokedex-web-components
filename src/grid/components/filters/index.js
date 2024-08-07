@@ -1,4 +1,3 @@
-import './index.less';
 import '../filter/index.js';
 export default class Filters extends HTMLElement {
 

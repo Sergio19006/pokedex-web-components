@@ -1,13 +1,112 @@
-.filter {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 8px;
-    padding: 8px;
-    background-color: #f1f1f1;
-    .desktop & {
-      grid-template-columns: 1fr 1fr 1fr;
+@primary-color: #4CAF50;
+@secondary-color: #f9f9f9;
+@background-color: #ffffff;
+@font-family: 'Arial', sans-serif;
+@text-color: #333;
+@subtext-color: #555;
+@highlight-color: #000;
+@checkbox-color: @primary-color;
+@border-radius: 10px;
+@shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+.filters {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: @background-color;
+  padding: 20px;
+  border-radius: @border-radius;
+  box-shadow: @shadow;
+  font-family: @font-family;
+  color: @text-color;
+
+  filter-component {
+    margin-bottom: 20px;
+
+    .filters {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: @primary-color;
+      border-bottom: 2px solid @primary-color;
+      padding-bottom: 5px;
     }
-    li {
+
+    ul.filter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       list-style: none;
-    } 
+      padding: 0;
+
+      li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        input[type="checkbox"] {
+          margin-right: 10px;
+          accent-color: @checkbox-color;
+        }
+
+        label {
+          font-size: 1em;
+          color: @subtext-color;
+          cursor: pointer;
+          transition: color 0.3s;
+
+          &:hover {
+            color: @highlight-color;
+          }
+        }
+      }
+    }
   }
+}
+
+.filters-component {
+  padding: 20px;
+  background-color: @secondary-color;
+  border-radius: @border-radius;
+  box-shadow: @shadow;
+}
+
+.filter-component {
+  background-color: @background-color;
+  border-radius: @border-radius;
+  box-shadow: @shadow;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  .filters {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: @primary-color;
+    margin-bottom: 15px;
+  }
+
+  ul.filter {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      input[type="checkbox"] {
+        margin-right: 10px;
+        accent-color: @checkbox-color;
+      }
+
+      label {
+        font-size: 1em;
+        color: @subtext-color;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+          color: @highlight-color;
+        }
+      }
+    }
+  }
+}

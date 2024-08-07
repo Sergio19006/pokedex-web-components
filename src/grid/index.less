@@ -1,3 +1,11 @@
+@font-family: 'Arial', sans-serif;
+@text-color: #ffffff;
+@button-hover-color: #45a049;
+@button-active-color: #388E3C;
+@primary-color: #4CAF50;
+@button-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+@border-radius: 5px;
+
 .container {
     display: flex;
     flex-direction: column;
@@ -11,24 +19,25 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,70,121,1) 24%, rgba(255,248,0,1) 100%);
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 70, 121, 1) 24%, rgba(255, 248, 0, 1) 100%);
     padding: 0;
     margin: 0;
-    min-height: 80vh;
+    min-height: 100vh;
 
     &-container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
     }
 
     &-element {
         grid-column: span 12;
+
         .desktop & {
             grid-column: span 3;
         }
+
         list-style: none;
         background-color: white;
         border-radius: 4px;
@@ -37,20 +46,43 @@
     }
 
     &__load-more {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
         width: 100%;
         .desktop & {
-            width: 150px;
+            width: 200px;
         }
-        margin-top: 20px;
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        font-size: 1em;
+        font-family: @font-family;
+        color: @text-color;
+        background-color: @primary-color;
+        border: none;
+        border-radius: @border-radius;
+        box-shadow: @button-shadow;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+
+        &:hover {
+            background-color: @button-hover-color;
+        }
+
+        &:active {
+            background-color: @button-active-color;
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
     }
+
     &__error-text {
         color: white;
         font-size: 14px;
         grid-column: 5 / 9;
+
         .desktop & {
             grid-column: span 2;
         }
